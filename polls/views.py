@@ -5,6 +5,11 @@ from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 import json
 from polls.models import User
+from StringIO import StringIO
+import unittest
+from polls.tests import allTest
+
+
 
 SUCCESS = 1  
 ERR_BAD_CREDENTIALS = -1  
@@ -45,6 +50,14 @@ def add(request):
 def TESTAPI_resetFixture(request):
 	User.TESTAPI_resetFixture()
 	return HttpResponse(json.dumps({"errCode" : SUCCESS}), content_type = "application/json")
+
+@csrf_exempt
+def TESTAPI_unitTests(request):
+	content = StringIO()
+	alltests = unittest.TestLoader().loadTestsFromTestCase(allTest)
+	msg = unittest.TextTestRunner(stream = content, verbosity=2).run(alltests)
+	return HttpResponse(json.dumps({"nrFailed" : len(msg.failures), "output" : content.getvalue(), "totalTests" : msg.testsRun }), content_type = "application/json")
+
 
 
 
