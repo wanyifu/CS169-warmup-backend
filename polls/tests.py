@@ -53,8 +53,11 @@ class allTest(TestCase):
         self.assertEqual(User().add("a"*127,"felix8"),SUCCESS)
         self.assertEqual(User().add("a"*129,"felix9"),ERR_BAD_USERNAME)
 
-    def test_add_um_none_invalid(self):
+    def test_add_um_none_valid(self):
         self.assertEqual(User().add(" ","felix10"),SUCCESS)
+
+    def test_add_um_none_invalid(self):
+        self.assertEqual(User().add("","felix10"),ERR_BAD_USERNAME)
 
     def test_add_repeated_invalid(self):
         a = User().add("wanyifu16", "felix16")
