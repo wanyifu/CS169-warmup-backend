@@ -39,11 +39,12 @@ def add(request):
 		    if count_or_code == ERR_BAD_USERNAME:
 			    return HttpResponse(json.dumps({"errCode" : ERR_BAD_USERNAME, "count" : count_or_code}), content_type = "application/json")
 		    else:
-			    return HttpResponse(json.dumps({"errCode" : ERR_BAD_PASSWORD, "count" : count_or_code}), content_type = "application/json")
+			    return HttpResponse(json.dumps({"errCode" : ERR_BAD_PASSWORD, "count" : count_or_code }), content_type = "application/json")
 
 @csrf_exempt
 def TESTAPI_resetFixture(request):
-	return HttpResponse(json.dumps({"errCode" : User.TESTAPI_resetFixture() , "count" : count_or_code}), content_type = "application/json")
+	User.TESTAPI_resetFixture()
+	return HttpResponse(json.dumps({"errCode" : SUCCESS}), content_type = "application/json")
 
 
 

@@ -42,10 +42,10 @@ class Test_Suites(testLib.RestTestCase):
 		r5 = self.makeRequest("/users/add", method="POST", data = {'user':'u5','password':'p5'} )
 		r51 = self.makeRequest("/users/login", method="POST", data = {'user':'u5','password':'p5'} )
 		r52 = self.makeRequest("/users/login", method="POST", data = {'user':'u5','password':'p5'} )
-		r52 = self.makeRequest("/users/login", method="POST", data = {'user':'u5','password':'p5'} )
-		self.assertEqual(r51['count'],1)
-		self.assertEqual(r52['count'],2)
-		self.assertEqual(r53['count'],3)
+		r53 = self.makeRequest("/users/login", method="POST", data = {'user':'u5','password':'p5'} )
+		self.assertEqual(r51['count'],2)
+		self.assertEqual(r52['count'],3)
+		self.assertEqual(r53['count'],4)
 
 	def test_login_basic(self):
 		r6 = self.makeRequest("/users/add", method="POST", data = {'user':'u6','password':'p6'} )

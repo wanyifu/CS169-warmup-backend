@@ -85,7 +85,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 import dj_database_url
-#DATABASES['default'] = { 'ENGINE' : 'django.db.backends.sqlite3' }
 DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

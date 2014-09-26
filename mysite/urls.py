@@ -12,6 +12,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^users/login$', 'polls.views.login'),
     url(r'^users/add$', 'polls.views.add'),
-    url(r'^TESTAPI/resetFixture$', 'polls.views.reset'),
-    url(r'^TESTAPI/unitTests$', 'polls.views.test'),
+    url(r'^TESTAPI/resetFixture$', 'polls.views.TESTAPI_resetFixture'),
+    
 )
