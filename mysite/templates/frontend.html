@@ -1,13 +1,14 @@
 <html>
   <head>
     <link rel = "stylesheet" type = "text/css" href = "frontend.css">
+
     <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 <script type = "text/javascript">
 
 $(document).ready(function() {
 
-  
+  //Please note I haven't rendered css which makes the web lack css formatting
   $('#login-screen').show();
   $('#login-message').html("Please enter your credentials below");
   $('#welcome-screen').hide();
@@ -16,9 +17,11 @@ console.log("loading finished")})
 $(document).on("click", "#login-button", function(e){
 
 
-
+//To keep away the default behaviors and submit twice problem
   e.preventDefault();
   e.stopPropagation();
+
+  //Extracing infos from dialog box
 
   var username = $('#login-username').val()
   var password = $('#login-password').val()
@@ -43,6 +46,7 @@ $(document).on("click", "#login-button", function(e){
       }
 
       else{
+        //Only bad credential can come from negative errCode in Login
         $('#login-screen').show()
         $('#welcome-screen').hide()
         console.log(data)
@@ -80,12 +84,15 @@ $(document).on("click", "#login-button", function(e){
             $('#login-screen').show()
             $('#welcome-screen').hide()
             if (data.errCode == -2){
+              //Repeated Users case
             $('#login-message').html("This username already exists. Please try again.")}
 
             else if (data.errCode == -3){
+              //bad username case
               $('#login-message').html("The user name should be non-empty and at most 128 characters long. Please try again.")}
 
             else{
+              //bad password case
               $('#login-message').html("The password should be at most 128 characters long. Please try again.")}
 
             }
