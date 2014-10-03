@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', 'polls.views.renderer'),
+    url(r'^frontend.css$',TemplateView.as_view(template_name='frontend.css'))
+
     url(r'^users/login$', 'polls.views.login'),
     url(r'^users/add$', 'polls.views.add'),
     url(r'^TESTAPI/resetFixture$', 'polls.views.TESTAPI_resetFixture'),
