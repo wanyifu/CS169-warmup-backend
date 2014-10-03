@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   
   $('#login-screen').show();
-  $('#login-message').html("Please enter username and password below");
+  $('#login-message').html("Please enter your credentials below");
   $('#welcome-screen').hide();
 console.log("loading finished")})
 
@@ -38,7 +38,7 @@ $(document).on("click", "#login-button", function(e){
         $('#login-screen').hide();
         $('#welcome-screen').show();
         console.log(data)
-        $('#welcome-message').html("Welcome "+username+"<br>You have logged in "+data.count+" times.");
+        $('#welcome-message').html("Welcome "+username+". You have logged in "+data.count+" times.");
 
       }
 
@@ -46,7 +46,7 @@ $(document).on("click", "#login-button", function(e){
         $('#login-screen').show()
         $('#welcome-screen').hide()
         console.log(data)
-        $('#login-message').html("You are running into Error:"+data.errCode)
+        $('#login-message').html("Invalid username and password combination. Please try again.")
 
       }
 
@@ -72,18 +72,30 @@ $(document).on("click", "#login-button", function(e){
           if (data.errCode > 0){
             $('#login-screen').hide();
             $('#welcome-screen').show();
-            $('#welcome-message').html("Welcome "+username+"<br>You have logged in "+data.count+" times.");
+            $('#welcome-message').html("Welcome "+username+". You have logged in "+data.count+" times.");
 
           }
 
           else{
             $('#login-screen').show()
             $('#welcome-screen').hide()
-            $('#login-message').html("You are running into Error:"+data.errCode)
+            if (data.errCode == -2){
+            $('#login-message').html("This username already exists. Please try again.")}
+
+            else if (data.errCode == -3){
+              $('#login-message').html("The user name should be non-empty and at most 128 characters long. Please try again.")}
+
+            else{
+              $('#login-message').html("The password should be at most 128 characters long. Please try again.")}
+
+            }
+
+            
 
           }
 
-        }
+
+        
   })
 });
 
@@ -92,7 +104,7 @@ $(document).on("click", "#login-button", function(e){
   e.stopPropagation();
 
   $('#login-screen').show()
-  $('#login-message').html("Thanks you, you have successfully logged out")
+  $('#login-message').html("Please enter your credentials below")
   $('#welcome-screen').hide()
 });
 
