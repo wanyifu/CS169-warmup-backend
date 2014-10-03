@@ -11,6 +11,7 @@ from polls.tests import allTest
 
 
 
+
 SUCCESS = 1  
 ERR_BAD_CREDENTIALS = -1  
 ERR_USER_EXISTS = -2  
@@ -51,15 +52,10 @@ def TESTAPI_resetFixture(request):
 	User.TESTAPI_resetFixture()
 	return HttpResponse(json.dumps({"errCode" : SUCCESS}), content_type = "application/json")
 
+
 @csrf_exempt
-def TESTAPI_unitTests(request):
-	content = StringIO()
-	alltests = unittest.TestLoader().loadTestsFromTestCase(allTest)
-	msg = unittest.TextTestRunner(stream = content, verbosity=2).run(alltests)
-	return HttpResponse(json.dumps({"nrFailed" : len(msg.failures), "output" : content.getvalue(), "totalTests" : msg.testsRun }), content_type = "application/json")
-
-
-
+def renderer(request):
+	return render_to_response('frontend.html', {})
 
 
 
